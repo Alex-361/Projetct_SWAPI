@@ -9,7 +9,7 @@ jobs:
     steps:
       # Ação para verificar o código
       - name: Checkout code
-        uses: actions/checkout@v3  # A versão mais recente do checkout
+        uses: actions/checkout@v3
 
       # Configura a versão do Node.js para 20
       - name: Setup Node.js 20
@@ -17,13 +17,23 @@ jobs:
         with:
           node-version: '20'
 
+      # Passo de Debug: verifique as versões de Node e npm
+      - name: Debug environment
+        run: |
+          echo "Node version:"
+          node --version
+          echo "npm version:"
+          npm --version
+          echo "Installed packages:"
+          npm list --depth=0
+
       # Instala as dependências necessárias
       - name: Install dependencies
         run: npm install
 
       # Garantir permissões de execução, se necessário
       - name: Ensure executable permissions
-        run: chmod +x ./path/to/your/script.sh  # Verifique o caminho correto
+        run: chmod +x ./path/to/your/script.sh
 
       # Executa os testes
       - name: Run tests
