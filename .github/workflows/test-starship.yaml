@@ -1,24 +1,30 @@
-name: Test Starship Endpoint
+name: Test SWAPI Starship
 
 on: [push]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      # Ação para verificar o código
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      # Configura a versão do Node.js para 16 (em vez da versão antiga)
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # Instala as dependências necessárias
       - name: Install dependencies
         run: npm install
 
-      - name: Run starship test
-        run: npx jest src/tests/starship.test.js
+      # Executa os testes
+      - name: Run tests
+        run: npm test
 
-
-
+      # Permissões adequadas para scripts executáveis, se necessário
+      - name: Ensure executable permissions
+        run: chmod +x ./path/to/your/script.sh  # Caso tenha scripts que precisem de permissão de execução
