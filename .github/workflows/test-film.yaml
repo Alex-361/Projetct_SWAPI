@@ -18,4 +18,4 @@ jobs:
         run: npm install
 
       - name: Run film test
-        run: npm test src/tests/film.test.js
+        run: npx jest src/tests/film.test.js
